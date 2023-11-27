@@ -1,0 +1,17 @@
+{
+  "name": "dc5-pelassa-axel-api",
+  "version": "1.0.0",
+  "description": "### Présentation du projet Vous êtes un développeur travaillant pour une start-up de marketing en ligne appelée \"MarketX\". La société propose des services de marketing numérique, y compris la gestion de campagnes publicitaires, l'analyse de données, et la création de contenu promotionnel. Actuellement, MarketX souhaite mettre en place une API simple pour permettre aux utilisateurs d'accéder à des informations de base sur les campagnes publicitaires en cours.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6"
+  }
+}
