@@ -30,16 +30,16 @@ Description : Supprime un événement en fonction de son ID.
 ### Base de données
 La base de données est composée d'une table : campagnes
 
-#### Exemple d'utilisation
+### Exemple d'utilisation
 
-- Récupérer toutes les campagnes
-curl -X GET http://localhost:3000/api/campaigns
+#### Récupérer toutes les campagnes
+- curl -X GET http://localhost:3000/api/campaigns
 
-- Récupérer une campagne spécifique
-curl -X GET http://localhost:3000/api/campaigns/1
+#### Récupérer une campagne spécifique
+- curl -X GET http://localhost:3000/api/campaigns/1
 
-- Créer une campagne
-curl -X POST -H "Content-Type: application/json" -d '{"name":"Campagne 1","description":"Description de la campagne 1","start_date":"2021-01-01","end_date":"2021-01-31","budget":1000}' http://localhost:3000/api/campaigns
+#### Créer une campagne
+- curl -X POST -H "Content-Type: application/json" -d '{"name":"Campagne 1","description":"Description de la campagne 1","start_date":"2021-01-01","end_date":"2021-01-31","budget":1000}' http://localhost:3000/api/campaigns
 
-- Supprimer une campagne
-curl -X DELETE http://localhost:3000/api/campaigns/1
+#### Supprimer une campagne
+- curl -X DELETE http://localhost:3000/api/campaigns/1
