@@ -8,8 +8,8 @@ c.execute('''
         id INT PRIMARY KEY,
         name TEXT,
         description TEXT,
-        start_date DATE,
-        end_date DATE,
+        start_date TEXT,
+        end_date TEXT,
         budget INT
     )
 ''')
