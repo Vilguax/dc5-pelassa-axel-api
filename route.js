@@ -1,4 +1,8 @@
 module.exports = function(app, db) {
+    app.get('/api', (req, res) => {
+        res.json({"message": "Bienvenue sur l'API de gestion des campagnes publicitaires."});
+    });
+    
     app.get('/api/campaigns', (req, res) => {
         const sql = "SELECT * FROM campagnes";
         db.all(sql, [], (err, rows) => {

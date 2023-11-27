@@ -5,3 +5,5 @@ let db = new sqlite3.Database('dc5-pelassa-axel-api.db', (err) => {
     }
     console.log('Connecté à la db des campagnes.');
 });
+
+module.exports = db;
