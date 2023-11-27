@@ -1,4 +1,4 @@
-const Campaign = require('./models/campagnes');
+const campagnes = require('./models/campagnes');
 
 module.exports = function(app) {
     app.get('/api', (req, res) => {
@@ -7,7 +7,7 @@ module.exports = function(app) {
 
     app.get('/api/campaigns', async (req, res) => {
         try {
-            const campaigns = await Campaign.findAll();
+            const campaigns = await campagnes.findAll();
             res.json({"message": "succès ", "data": campaigns});
         } catch (err) {
             res.status(400).json({"erreur": err.message});
@@ -16,7 +16,7 @@ module.exports = function(app) {
 
     app.get('/api/campaigns/:id', async (req, res) => {
         try {
-            const campaign = await Campaign.findByPk(req.params.id);
+            const campaign = await campagnes.findByPk(req.params.id);
             if (campaign) {
                 res.json({"message": "succès ", "data": campaign});
             } else {
@@ -30,7 +30,7 @@ module.exports = function(app) {
     app.post('/api/campaigns', async (req, res) => {
         try {
             const { name, description, startDate, endDate, budget } = req.body;
-            const campaign = await Campaign.create({ name, description, startDate, endDate, budget });
+            const campaign = await campagnes.create({ name, description, startDate, endDate, budget });
             res.json({"message": "succès ", "data": { id: campaign.id }});
         } catch (err) {
             res.status(400).json({"erreur": err.message});
@@ -39,7 +39,7 @@ module.exports = function(app) {
 
     app.delete('/api/campaigns/:id', async (req, res) => {
         try {
-            const numDeleted = await Campaign.destroy({ where: { id: req.params.id } });
+            const numDeleted = await campagnes.destroy({ where: { id: req.params.id } });
             if (numDeleted) {
                 res.json({ "message": "suppression", rows: numDeleted });
             } else {
