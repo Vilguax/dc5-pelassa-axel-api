@@ -1,62 +1,52 @@
-module.exports = function(app, db) {
+const Campaign = require('./models/campagnes');
+
+module.exports = function(app) {
     app.get('/api', (req, res) => {
         res.json({"message": "Bienvenue sur l'API de gestion des campagnes publicitaires."});
     });
-    
-    app.get('/api/campaigns', (req, res) => {
-        const sql = "SELECT * FROM campagnes";
-        db.all(sql, [], (err, rows) => {
-            if (err) {
-                res.status(400).json({"erreur ": err.message});
-                return;
-            }
-            res.json({
-                "message": "succès ",
-                "data": rows
-            });
-        });
+
+    app.get('/api/campaigns', async (req, res) => {
+        try {
+            const campaigns = await Campaign.findAll();
+            res.json({"message": "succès ", "data": campaigns});
+        } catch (err) {
+            res.status(400).json({"erreur": err.message});
+        }
     });
-    
-    app.get('/api/campaigns/:id', (req, res) => {
-        const sql = "SELECT * FROM campagnes WHERE id = ?";
-        const params = [req.params.id];
-        db.get(sql, params, (err, row) => {
-            if (err) {
-                res.status(400).json({"erreur ": err.message});
-                return;
+
+    app.get('/api/campaigns/:id', async (req, res) => {
+        try {
+            const campaign = await Campaign.findByPk(req.params.id);
+            if (campaign) {
+                res.json({"message": "succès ", "data": campaign});
+            } else {
+                res.status(404).json({"erreur": "Campagne non trouvée"});
             }
-            res.json({
-                "message": "succès ",
-                "data": row
-            });
-        });
+        } catch (err) {
+            res.status(400).json({"erreur": err.message});
+        }
     });
-    
-    app.post('/api/campaigns', (req, res) => {
-        const { name, description, start_date, end_date, budget } = req.body;
-        const sql = `INSERT INTO campagnes (name, description, start_date, end_date, budget) VALUES (?, ?, ?, ?, ?)`;
-        const params = [name, description, start_date, end_date, budget];
-        db.run(sql, params, function (err) {
-            if (err) {
-                res.status(400).json({"erreur ": err.message});
-                return;
-            }
-            res.json({
-                "message": "succès ",
-                "data": { id: this.lastID }
-            });
-        });
+
+    app.post('/api/campaigns', async (req, res) => {
+        try {
+            const { name, description, startDate, endDate, budget } = req.body;
+            const campaign = await Campaign.create({ name, description, startDate, endDate, budget });
+            res.json({"message": "succès ", "data": { id: campaign.id }});
+        } catch (err) {
+            res.status(400).json({"erreur": err.message});
+        }
     });
-    
-    app.delete('/api/campaigns/:id', (req, res) => {
-        const sql = 'DELETE FROM campagnes WHERE id = ?';
-        const params = [req.params.id];
-        db.run(sql, params, function (err) {
-            if (err) {
-                res.status(400).json({ "erreur ": res.message });
-                return;
+
+    app.delete('/api/campaigns/:id', async (req, res) => {
+        try {
+            const numDeleted = await Campaign.destroy({ where: { id: req.params.id } });
+            if (numDeleted) {
+                res.json({ "message": "suppression", rows: numDeleted });
+            } else {
+                res.status(404).json({"erreur": "Campagne non trouvée"});
             }
-            res.json({ "message": "suppression", rows: this.changes });
-        });
+        } catch (err) {
+            res.status(400).json({"erreur": err.message});
+        }
     });
 };
