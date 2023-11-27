@@ -11,7 +11,7 @@ module.exports = function(app, db) {
                 return;
             }
             res.json({
-                "message": "succes ",
+                "message": "succès ",
                 "data": rows
             });
         });
@@ -26,7 +26,7 @@ module.exports = function(app, db) {
                 return;
             }
             res.json({
-                "message": "succes ",
+                "message": "succès ",
                 "data": row
             });
         });
@@ -42,7 +42,7 @@ module.exports = function(app, db) {
                 return;
             }
             res.json({
-                "message": "succes ",
+                "message": "succès ",
                 "data": { id: this.lastID }
             });
         });
@@ -53,7 +53,7 @@ module.exports = function(app, db) {
         const params = [req.params.id];
         db.run(sql, params, function (err) {
             if (err) {
-                res.status(400).json({ "error": res.message });
+                res.status(400).json({ "erreur ": res.message });
                 return;
             }
             res.json({ "message": "suppression", rows: this.changes });
