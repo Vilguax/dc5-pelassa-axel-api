@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from './NavLink.module.css';
+import styles from './style/NavLink.module.css';
 
 const NavLink = ({ href, text }) => {
     return (

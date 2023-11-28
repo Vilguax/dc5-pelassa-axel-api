@@ -1,0 +1,47 @@
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    background-color: black;
+    color: white;
+}
+
+.leftColumn {
+    flex-basis: 50%;
+    padding-right: 2em
+}
+
+.leftColumn h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+}
+
+.leftColumn p {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    opacity: 0.7;
+}
+
+.ctaButton {
+    padding: 15px 30px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.ctaButton:hover {
+    background-color: darkred;
+}
+
+.rightColumn {
+    flex-basis: 40%;
+    padding-left: 2em;
+    text-align: left;
+    font-size: 1.2em;
+    opacity: 0.85;
+}

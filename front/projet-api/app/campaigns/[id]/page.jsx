@@ -1,10 +1,8 @@
 import React from 'react'
-import Feed from '../components/Feed'
 
 const page = () => {
-    
   return (
-    <Feed />
+    <div>page</div>
   )
 }
 
