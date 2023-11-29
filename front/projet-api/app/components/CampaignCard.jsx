@@ -9,7 +9,7 @@ const CampaignCard = ({ id, name, description, budget }) => {
             <p>ID: {id}</p>
             <p>Description : {description}</p>
             <p>Budget: {budget} €</p>
-            <Link href={`/campaigns/${id}`} passHref>
+            <Link href={`/campaigns/${campaign.id}`} passHref>
                 <button className={styles.viewButton}>Voir la campagne</button>
             </Link>
         </div>
