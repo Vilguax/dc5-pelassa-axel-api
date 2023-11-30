@@ -7,7 +7,7 @@ const CampaignDetailPage = () => {
   const [campaignId, setCampaignId] = useState(null);
 
   useEffect(() => {
-    const id = new URL(window.location.href).pathname.split('/')[3];
+    const id = new URL(window.location.href).pathname.split('/')[2];
     setCampaignId(id);
   }, []);
 
