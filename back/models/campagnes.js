@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../sequelize.js');
 
-class Campagnes extends Model {}
+class campagnes extends Model {}
 
-Campagnes.init({
+campagnes.init({
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -16,8 +16,8 @@ Campagnes.init({
   budget: DataTypes.INTEGER
 }, { 
   sequelize, 
-  modelName: 'Campagnes',
+  modelName: 'campaigns',
   timestamps: false
 });
 
-module.exports = Campagnes;
+module.exports = campagnes;

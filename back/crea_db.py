@@ -1,16 +1,17 @@
 import sqlite3
 
-conn = sqlite3.connect('dc5-pelassa-axel-api.db')
+conn = sqlite3.connect('back/dc5-pelassa-axel.db')
 c = conn.cursor()
 
 c.execute('''
-    CREATE TABLE IF NOT EXISTS campagnes (
-        id INTEGER PRIMARY KEY,
+    CREATE TABLE campaigns (
+        id INTEGER,
         name TEXT,
         description TEXT,
         start_date TEXT,
         end_date TEXT,
-        budget INT
+        budget INT,
+        PRIMARY KEY(id)
     )
 ''')
 
@@ -99,9 +100,9 @@ data = [
 
 for item in data:
     c.execute('''
-        INSERT INTO campagnes (id, name, description, start_date, end_date, budget)
-        VALUES (?, ?, ?, ?, ?, ?)
-    ''', (item['id'], item['name'], item['description'], item['start_date'], item['end_date'], item['budget']))
+        INSERT INTO campaigns (name, description, start_date, end_date, budget)
+        VALUES (?, ?, ?, ?, ?)
+    ''', (item['name'], item['description'], item['start_date'], item['end_date'], item['budget']))
 
 conn.commit()
 conn.close()
