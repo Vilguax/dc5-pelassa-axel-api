@@ -5,7 +5,7 @@ c = conn.cursor()
 
 c.execute('''
     CREATE TABLE IF NOT EXISTS campagnes (
-        id INT PRIMARY KEY,
+        id INTEGER PRIMARY KEY,
         name TEXT,
         description TEXT,
         start_date TEXT,
