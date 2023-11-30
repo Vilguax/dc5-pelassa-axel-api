@@ -11,3 +11,8 @@ app.use(routes);
 app.listen(port, () => {
     console.log(`Le serveur tourne sur le port : ${port}`);
 });
+
+app.use((req, res, next) => {
+    console.log(`Route utilisée : ${req.method} ${req.url}`);
+    next();
+});

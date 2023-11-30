@@ -9,23 +9,24 @@ const Feed = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const fetchCampaigns = async () => {
+        try {
+            const response = await fetch('http://localhost:3001/api/campaigns');
+            if (!response.ok) {
+                throw new Error('Serveur API indisponible');
+            }
+            const data = await response.json();
+            setCampaigns(data.data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching campaigns:', error);
+            setError('Failed to fetch campaigns');
+            setLoading(false);
+        }
+    }
+
     useEffect(() => {
-        fetch('http://localhost:3001/api/campaigns')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Serveur API indisponible ');
-                }
-                return response.json();
-            })
-            .then(data => {
-                setCampaigns(data.data);
-                setLoading(false);
-            })
-            .catch(error => {
-                console.error('Error fetching campaigns:', error);
-                setError('Failed to fetch campaigns');
-                setLoading(false);
-            });            
+        fetchCampaigns();
     }, []);
 
     if (loading) {
@@ -43,7 +44,7 @@ const Feed = () => {
             </div>
             <div className={styles.cardsContainer}>
                 {campaigns.map(campaign => (
-                    <CampaignCard key={campaign.id} {...campaign} />
+                    <CampaignCard key={campaign.id} id={campaign.id} name={campaign.name} description={campaign.description} budget={campaign.budget} />
                 ))}
             </div>
         </div>
